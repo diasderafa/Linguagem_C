@@ -1,0 +1,422 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+float mediaonline, a1online, a2online, a3online, a3necessaria, a1pressencial, a2pressencial, a3pressencial, a4, mediapressencial;
+int opprincipal, oppressencial, opa1a2a3;
+
+int main()
+{
+
+	
+setlocale (LC_ALL,"Portuguese");	
+printf("\n\n---------------------------------------------------------------------------------------------------------\n\n");
+printf("|                                        CÁLCULO DE NOTAS                                               |\n\n");	
+printf("---------------------------------------------------------------------------------------------------------\n\n");
+
+
+printf(" 1-Disciplinas Onlines\n\n 2-Disciplinas Presenciais\n\n 3-Finalizar o Programa\n\n\n Digite a opção desejada..: ");
+scanf("%d", &opprincipal);
+
+switch (opprincipal)
+{
+	case 1:
+		{
+		funcaoonline();	
+		}
+		
+	case 2:
+		{
+		funcaoa1a2a3();	
+		}
+	case 3:
+		{
+		printf("\n\n--------------------------------------------------\n\n");
+		printf("\n Obrigado por utilizar o programa, tenha um bom dia!\n\n");
+		exit(0);
+		}
+	default:
+		{
+		printf("\n Digite uma opção válida.");
+		printf("\n\n");
+		system("pause");
+		system("cls");	
+		main();	
+		}
+}
+	return 0;
+}
+
+int funcaoonline()
+	{
+			system ("cls");
+			printf("\n\n---------------------------------------------------------------------------------------------------------\n\n");
+			printf("|                                        DISCIPLINAS ONLINE                                             |\n\n");
+			printf("---------------------------------------------------------------------------------------------------------\n\n");
+			printf("\n\n Digite a nota da A1..: ");
+			scanf("%f", &a1online);	
+			if (a1online >=0 && a1online <=10)
+			{
+				printf("\n Digite a nota da A2 ou A3..: ");
+				scanf("%f", &a2online);
+			
+					if (a1online>0 && a2online>=6) //definição de formula de cálculo
+						{
+							mediaonline = (a1online*0.4)+(a2online*0.6);
+							printf("\n\n A média final do aluno na disciplina online é..: %.1f\n", mediaonline);
+						}
+					else
+						{
+							mediaonline = ((a1online*0.4)+(a2online*0.6))/2;
+							printf("\n\n A média final do aluno na disciplina online é..: %.1f\n", mediaonline);
+							
+						}
+					if (mediaonline>=6) //resultado de aprovação ou não
+						{
+							printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+							printf("\n Aprovado. Você possui nota suficiente para passar nesta disciplina.\n\n");
+							printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+							printf("\n\n");
+							system("pause");
+							system("cls");
+							main();
+						}
+					else //quantidade necessária impossível
+						{
+							a3necessaria = (6 - (a1online * 0.4))/0.6;
+							
+							if (a3necessaria >10) 
+							{
+							printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+							printf("\n Reprovado. Você não possui nota suficiente para passar nesta disciplina.\n\n");
+							printf("\n O aluno precisará tirar na A3 uma nota igual ou acima de %.1f para conseguir a aprovação, tornando assim impossível sua aprovação.\n\n", a3necessaria);	
+							printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+							printf(" Caso tenha realizado a A3 digite a nota, caso contrario digite um número acima de 10 para sair..: ");
+							scanf("%d", &a3online);
+							printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+								if (a3online >=0 && a3online<=10)
+								{
+									if (a1online>0 && a3online>=6) //definição de formula de cálculo
+									{
+										mediaonline = (a1online*0.4)+(a3online*0.6);
+										printf("\n\n A média final do aluno na disciplina online é..: %.1f\n", mediaonline);
+									}
+									else
+									{
+										mediaonline = ((a1online*0.4)+(a3online*0.6))/2;
+										printf("\n\n A média final do aluno na disciplina online é..: %.1f\n", mediaonline);
+								
+									}
+								}
+								else 
+								{
+									printf("--------------------------------\n\n");
+									printf("\n\n Retornando ao menu principal.\n\n");
+									printf("\n--------------------------------\n\n");
+									printf("\n\n");
+									system("pause");
+									system("cls");
+									main();
+								}			
+							}
+							else //quantidade necessária possível
+							{
+							printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+							printf("\n Reprovado. Você não possui nota suficiente para passar nesta disciplina.\n\n");
+							printf("\n O aluno precisará tirar na A3 uma nota igual ou acima de %.1f para conseguir a aprovação.\n\n", a3necessaria);		
+							printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+							printf(" Caso tenha realizado a A3 digite a nota, caso contrario digite um número acima de 10 para sair..: ");
+							scanf("%f", &a3online);
+							printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+
+								if (a3online >=0 && a3online<=10)
+								{
+									if (a1online>0 && a3online>=6) //definição de formula de cálculo
+									{
+										mediaonline = (a1online*0.4)+(a3online*0.6);
+										printf("\n\n A média final do aluno na disciplina online após a realização da A3 é..: %.1f\n", mediaonline);
+										if (mediaonline>=6)
+										{
+												printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+												printf("\n Aprovado. Você possui nota suficiente para passar nesta disciplina.\n\n");
+												printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+												printf("\n\n");
+												system("pause");
+												system("cls");
+												main();	
+										}
+										else
+										{
+												printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+												printf("\n Reprovado. Você não possui nota suficiente para passar nesta disciplina.\n\n");
+												printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+												printf("\n\n");
+												system("pause");
+												system("cls");
+												main();
+										}
+									}
+									else
+									{
+										mediaonline = ((a1online*0.4)+(a3online*0.6))/2;
+										printf("\n\n A média final do aluno na disciplina online após a realização da A3 é..: %.1f\n", mediaonline);
+										
+										
+										
+										
+										printf("\n\n");
+										system("pause");
+										system("cls");
+										main();
+								
+									}
+								}
+								else
+								{
+									printf("--------------------------------\n\n");
+									printf("\n\n Retornando ao menu principal.\n\n");
+									printf("\n--------------------------------\n\n");
+									printf("\n\n");
+									system("pause");
+									system("cls");
+									main();
+								}				
+							}
+						}
+				
+			}
+	}
+	
+int funcaoa1a2a3()
+{
+		system ("cls");
+			printf("\n\n---------------------------------------------------------------------------------------------------------\n\n");
+			printf("|                                        DISCIPLINAS PRESENCIAL                                             |\n\n");
+			printf("---------------------------------------------------------------------------------------------------------\n\n");
+			
+			printf("\n 1-A1/A2/A3\n\n 2-A4\n\n 3-Retornar ao Menu Anterior\n\n 4-Fechar o Programa");
+			printf("\n\n\n Digite a opção desejada..: ");
+			scanf("%d", &oppressencial);
+			
+			switch (oppressencial)
+			{
+				case 1: //a1a2a3
+					{
+						system("cls");
+						printf("\n\n---------------------------------------------------------------------------------------------------------\n\n");
+						printf("|                                        NOTAS A1 / A2 / A3                                             |\n\n");
+						printf("---------------------------------------------------------------------------------------------------------\n\n");
+						printf("\n Você realizou..:\n\n\n 1-A1 e A2\n\n 2-A1 e A3\n\n 3-A2 e A3\n\n 4-Retornar ao Menu Anterior\n\n\n Digite a opção desejada..: ");
+						scanf("%d", &opa1a2a3);
+						if (opa1a2a3==1) //a1 e a2
+							{
+								system("cls");
+								printf("\n\n---------------------------------------------------------------------------------------------------------\n\n");
+								printf("|                                           NOTAS A1 / A2                                               |\n\n");
+								printf("---------------------------------------------------------------------------------------------------------\n\n");
+								printf("\n\n Digite a nota da A1..: ");
+								scanf("%f", &a1pressencial);	
+								printf("Digite a nota da A2..: ");
+								scanf("%f", &a2pressencial);
+										if (a1pressencial>=5 && a2pressencial>=5) //aprovação com nota maior que 5
+											{
+												mediapressencial = (a1pressencial + a2pressencial)/2;
+												printf("\n\n A média final do aluno na disciplina pressencial é..: %.2f\n", mediapressencial);
+													
+													if (mediapressencial>=6)
+												{
+													printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+													printf("\n Aprovado. Você possui nota suficiente para passar nesta disciplina.\n\n");
+													printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+													printf("\n\n");
+													system("pause");
+													system("cls");
+													funcaoa1a2a3();
+												}
+													 if (a1pressencial > a2pressencial)
+												{
+													a3pressencial = (mediapressencial * 2) - a1pressencial;
+													printf("\n\n---------------------------------------------------------------------------------------------------------\n\n");
+													printf("\n Reprovado. Você não possui nota suficiente para passar nesta disciplina.\n\n");
+													printf("\n O aluno precisará tirar na A3 uma nota igual ou acima de %.2f para conseguir a aprovação, tornando assim impossível sua aprovação.\n\n", a3pressencial);	
+													printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+													printf("\n\n");
+													system("pause");
+													system("cls");
+													funcaoa1a2a3();							
+												}
+													else if (a2pressencial > a1pressencial)
+												{
+													a3pressencial = (mediapressencial * 2) - a2pressencial;
+													printf("\n\n---------------------------------------------------------------------------------------------------------\n\n");
+													printf("\n Reprovado. Você não possui nota suficiente para passar nesta disciplina.\n\n");
+													printf("\n O aluno precisará tirar na A3 uma nota igual ou acima de %.2f para conseguir a aprovação.\n\n", a3pressencial);		
+													printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+													printf("\n\n");
+													system("pause");
+													system("cls");
+													funcaoa1a2a3();
+												}
+											}
+										else 
+											{
+												printf("\n\n Reprovado. Você não possui nota mínima 5 em cada grau de qualificação.\n");
+												printf("\n\n");
+												system("pause");
+												system("cls");
+												funcaoa1a2a3();
+											}
+							}
+							
+						else if (opa1a2a3==2) //a1 e a3
+							{
+								system("cls");
+								printf("\n\n---------------------------------------------------------------------------------------------------------\n\n");
+								printf("|                                           NOTAS A1 / A3                                               |\n\n");
+								printf("---------------------------------------------------------------------------------------------------------\n\n");
+								printf("\n\n Digite a nota da A1..: ");
+								scanf("%f", &a1pressencial);	
+								if (a1pressencial>=0 && a1pressencial<=10)
+								{
+									printf("Digite a nota da A3..: ");
+									scanf("%f", &a3pressencial);
+										if (a1pressencial>=5 && a3pressencial>=5)
+											{
+												mediapressencial = (a1pressencial + a3pressencial)/2;
+												printf("\n\n A média final do aluno na disciplina pressencial é..: %.2f\n", mediapressencial);
+											}
+										else 
+											{
+												printf("\n\n Reprovado. Você não possui nota mínima 5 em cada grau de qualificação.");
+											}
+										if (mediapressencial>=6)
+											{
+												printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+												printf("\n Aprovado. Você possui nota suficiente para passar nesta disciplina.\n\n");
+												printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+												printf("\n\n");
+												system("pause");
+												system("cls");
+												funcaoa1a2a3();
+											}
+										else 
+											{
+												printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+												printf("\n Reprovado. Você não possui nota suficiente para passar nesta disciplina.\n\n");
+												printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+												printf("\n\n");
+												system("pause");
+												system("cls");
+												funcaoa1a2a3();
+											}
+								}
+							}
+														
+						else if (opa1a2a3==3) //a2 e a3
+							{
+								system("cls");
+								printf("\n\n---------------------------------------------------------------------------------------------------------\n\n");
+								printf("|                                           NOTAS A2 / A3                                               |\n\n");
+								printf("---------------------------------------------------------------------------------------------------------\n\n");
+								printf("\n\n Digite a nota da A2..: ");
+								scanf("%f", &a2pressencial);	
+								if (a2pressencial>=0 && a2pressencial<=10)
+								{
+									printf("Digite a nota da A3..: ");
+									scanf("%f", &a3pressencial);
+									if (a3pressencial >=0 && a3pressencial<=10);
+									{
+										if (a2pressencial>=5 && a3pressencial>=5)
+											{
+												mediapressencial = (a2pressencial + a3pressencial)/2;
+												printf("\n\n A média final do aluno na disciplina pressencial é..: %.2f\n", mediapressencial);
+											}
+										else 
+											{
+												printf("\n\n Reprovado. Você não possui nota mínima 5 em cada grau de qualificação.");
+											}
+										if (mediapressencial>=6)
+											{
+												printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+												printf("\n Aprovado. Você possui nota suficiente para passar nesta disciplina.\n\n");
+												printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+												printf("\n\n");
+												system("pause");
+												system("cls");
+												funcaoa1a2a3();
+											}
+										else 
+											{
+												printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+												printf("\n Reprovado. Você não possui nota suficiente para passar nesta disciplina.\n\n");
+												printf("\n---------------------------------------------------------------------------------------------------------\n\n");
+												printf("\n\n");
+												system("pause");
+												system("cls");
+												funcaoa1a2a3();
+											}
+									}	
+								}
+							}
+						else if (opa1a2a3==4)
+							{
+							 system("cls");
+							 funcaoa1a2a3();
+							}		
+					}
+					
+				case 2: //a4
+					{
+					system ("cls");
+					printf("\n\n---------------------------------------------------------------------------------------------------------\n\n");
+					printf("|                                                NOTA A4                                                |\n\n");
+					printf("---------------------------------------------------------------------------------------------------------\n\n");
+					printf("\n Digite sua nota na A4..: ");
+					scanf("%f", &a4);
+					if (a4>=7)
+					 {
+						printf("\n\n----------------------------------------------------\n\n");
+					 	printf("\n Sua nota final foi %.1f", a4);
+					 	printf("\n\n Aprovado. Você obteve nota suficiente para passar nessa disciplina.");
+						printf("\n\n----------------------------------------------------\n\n");
+						system("pause");
+						system("cls");
+						main();
+					 }	
+					else
+					 {
+						printf("\n\n-------------------------------------------------------\n\n");
+					 	printf("\n Sua nota final foi %.1f", a4);
+					 	printf("\n\n Reprovado. Você não obteve nota suficiente para passar nessa disciplina.");
+						printf("\n\n-------------------------------------------------------\n\n");
+						system("pause");
+						system("cls");
+						main();
+					 }
+					 break;
+					}
+				
+				case 3:
+					{
+						system("cls");
+						main();
+					}
+				case 4:
+					{
+					printf("\n\n--------------------------------------------------\n\n");
+					printf("\n Obrigado por utilizar o programa, tenha um bom dia!\n\n");
+					printf("\n\n--------------------------------------------------\n\n");
+					exit(0);
+					}
+					
+				default:
+					{
+					printf("\n Digite uma opção válida.");
+					printf("\n\n");
+					system("pause");
+					system("cls");	
+					funcaoa1a2a3();	
+					}
+			}
+}	
+	
